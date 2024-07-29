@@ -6,14 +6,19 @@ export default function BoxGrid({ boxNum }) {
 
     const [isActive, setIsActive] = useState(() => initialState(boxNum));
 
-    const toggleColor = (idx) => (
-        setIsActive(previous => {
-            const newState = [...previous];
-            newState[idx] = !newState[idx];
-            return newState;
-        })
-    )
+    // const toggleColor = (idx) => (
+    //     setIsActive(previous => {
+    //         const newState = [...previous];
+    //         newState[idx] = !newState[idx];
+    //         return newState;
+    //     })
+    // )
 
+    const toggleColor = (idx) => {
+        setIsActive(previous => {
+            return previous.map((b, i) => i === idx ? !b : b)
+        })
+    }
     return (
         <div className="BoxGrid">
             {isActive.map((b, idx) => (
